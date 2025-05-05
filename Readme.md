@@ -6,52 +6,47 @@ This project implements a unified batch and streaming data pipeline on Google Cl
 ## Architecture
 
 ```mermaid
-graph TB
-    subgraph "Data Sources"
+flowchart LR
+    %% Data Sources
+    subgraph DS[Data Sources]
         IoT[IoT Devices]
         Web[Web Applications]
     end
 
-    subgraph "Data Ingestion"
-        PS[Cloud Pub/Sub]
+    %% Data Ingestion
+    subgraph DI[Data Ingestion]
+        PubSub[Cloud Pub/Sub]
         GCS[Cloud Storage]
     end
 
-    subgraph "Data Processing"
+    %% Data Processing
+    subgraph DP[Data Processing]
         CF[Cloud Functions]
         DF[Cloud Dataflow]
-        CP[Cloud Composer]
+        CC[Cloud Composer]
     end
 
-    subgraph "ML & Analytics"
+    %% ML & Analytics
+    subgraph ML[ML & Analytics]
         VA[Vertex AI]
         BQ[BigQuery]
     end
 
-    IoT -->|Real-time Events| PS
-    Web -->|Real-time Events| PS
-    IoT -->|Batch Files| GCS
-    Web -->|Batch Files| GCS
+    %% Flows
+    IoT -- Real-time Events --> PubSub
+    Web -- Real-time Events --> PubSub
+    IoT -- Batch Files --> GCS
+    Web -- Batch Files --> GCS
 
-    PS -->|Preprocessing| CF
-    CF -->|Processed Events| PS
-    PS -->|Streaming| DF
-    GCS -->|Batch| DF
+    PubSub -- "Preprocessing" --> CF
+    CF -- "Processed Events" --> PubSub
+    PubSub -- "Streaming" --> DF
+    GCS -- "Batch" --> DF
+    CC -- "Orchestration" --> DF
 
-    CP -->|Orchestration| DF
-    DF -->|Processed Data| BQ
-    DF -->|Features| VA
-    VA -->|Predictions| BQ
-
-    style IoT fill:#f9f,stroke:#333,stroke-width:2px
-    style Web fill:#f9f,stroke:#333,stroke-width:2px
-    style PS fill:#bbf,stroke:#333,stroke-width:2px
-    style GCS fill:#bbf,stroke:#333,stroke-width:2px
-    style CF fill:#bfb,stroke:#333,stroke-width:2px
-    style DF fill:#bfb,stroke:#333,stroke-width:2px
-    style CP fill:#bfb,stroke:#333,stroke-width:2px
-    style VA fill:#fbb,stroke:#333,stroke-width:2px
-    style BQ fill:#fbb,stroke:#333,stroke-width:2px
+    DF -- "Processed Data" --> BQ
+    DF -- "Features" --> VA
+    VA -- "Predictions" --> BQ
 ```
 
 ## Architecture Components
