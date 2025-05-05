@@ -1,0 +1,61 @@
+[
+  {
+    "name": "event_id",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Unique identifier for the event"
+  },
+  {
+    "name": "event_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "Timestamp when the event occurred"
+  },
+  {
+    "name": "event_type",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Type of event (e.g., click, view, purchase)"
+  },
+  {
+    "name": "device_id",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Identifier of the device that generated the event"
+  },
+  {
+    "name": "user_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Identifier of the user associated with the event"
+  },
+  {
+    "name": "properties",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "description": "Additional event properties",
+    "fields": [
+      {
+        "name": "page_url",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "referrer",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "value",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "prediction_score",
+    "type": "FLOAT",
+    "mode": "NULLABLE",
+    "description": "ML model prediction score for the event"
+  }
+] 

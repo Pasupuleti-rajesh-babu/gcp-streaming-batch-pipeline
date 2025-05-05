@@ -1,0 +1,7 @@
+apache-beam[gcp]==2.46.0
+google-cloud-pubsub==2.18.4
+google-cloud-storage==2.10.0
+google-cloud-bigquery==3.11.4
+google-cloud-aiplatform==1.36.4
+functions-framework==3.4.0
+apache-airflow-providers-google==10.4.0 

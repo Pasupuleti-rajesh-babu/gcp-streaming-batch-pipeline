@@ -1,0 +1,12 @@
+{
+    "event_id": "evt_123456789",
+    "event_timestamp": "2024-01-01T12:00:00Z",
+    "event_type": "click",
+    "device_id": "dev_987654321",
+    "user_id": "user_123",
+    "properties": {
+        "page_url": "https://example.com/products/123",
+        "referrer": "https://example.com/search",
+        "value": 29.99
+    }
+} 
